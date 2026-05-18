@@ -9,7 +9,7 @@
             font-family: monospace;
             margin: 2rem;
             background-color: rgb(255, 255, 255);
-            color: #e0e0e0;
+            color: #333; /* 改为深色，便于在白色背景阅读 */
         }
         img {
             max-width: 80%;
@@ -23,32 +23,34 @@
             opacity: 0.9;
             border-color: #888;
         }
-        。download {
+        .download {
             margin: 1rem;
         }
-        。secret-corner {
+        .secret-corner {
             position: fixed;
             bottom: 10px;
             right: 10px;
             font-size: 12px;
-            opacity: 0.2;
-        }
-        。secret-corner:hover {
+            /* 移除透明度，让链接更明显 */
             opacity: 1;
         }
         .secret-corner a {
-            color: #505050;
+            color: #555; /* 深灰色，清晰可见 */
             text-decoration: none;
         }
         .secret-corner a:hover {
-            color: white;
+            color: #000; /* 悬停变黑 */
+            text-decoration: underline;
         }
         a {
             color: #ccc;
             text-decoration: none;
         }
         p {
-            color: #bbb;
+            color: #555;
+        }
+        h1 {
+            color: #222;
         }
     </style>
 </head>
