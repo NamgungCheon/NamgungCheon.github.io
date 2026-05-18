@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>네거티브</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            background: #f0f0f0;
+            margin-top: 3rem;
+        }
+        .box {
+            background: white;
+            border: 2px solid #333;
+            padding: 2rem;
+            display: inline-block;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        input, button {
+            padding: 0.6rem 1rem;
+            margin: 0.5rem;
+            font-size: 1rem;
+            font-family: monospace;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+        button {
+            background: #222;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button:hover {
+            background: #555;
+        }
+        #message {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+        }
+        .hint {
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>📦결말</h2>
+        <p>비밀번호를 입력해 주세요.</p>
+        <input type="text" id="password" placeholder="비밀번호 네 자리 입력" autocomplete="off">
+        <button onclick="checkAndDownload()">잠금 풀고 다운로드</button>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        function checkAndDownload() {
+            const pw = document.getElementById('password').value.trim();
+            const msgDiv = document.getElementById('message');
+            
+            if (pw === "1964") {
+                // 正片结局
+                msgDiv.innerHTML = "✅포지티브 비밀번호가 맞습니다, <빛> 다운로드를 시작합니다....";
+                msgDiv.style.color = "green";
+                // 创建隐藏下载链接
+                const link = document.createElement('a');
+                link.href = "secret_A.zip";
+                link.download = "/NamgungCheon.github.io/arc/secret_A.zip";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } 
+            else if (pw === "4691") {
+                // 负片结局
+                msgDiv.innerHTML = "🌑 네거티브 비밀번호가 맞습니다, <그림자> 다운로드를 시작합니다....";
+                msgDiv.style.color = "purple";
+                const link = document.createElement('a');
+                link.href = "secret_B.zip";
+                link.download = "/NamgungCheon.github.io/arc/secret_B.zip";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+            else {
+                msgDiv.innerHTML = "❌ 비밀번호가 틀렸습니다.";
+                msgDiv.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
