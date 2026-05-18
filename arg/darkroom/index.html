@@ -3,20 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>지점</title>
+    <style>
+        body {
+            text-align: center;  /* 让内部行内/内联块元素居中 */
+            margin: 0;
+            padding: 20px;
+        }
+        div {
+            margin-bottom: 20px;
+        }
+        img {
+            max-width: 100%;      /* 响应式，防止超出屏幕 */
+            height: auto;
+            display: inline-block; /* 配合 body text-align 居中 */
+        }
+    </style>
 </head>
 <body>
-    <!-- 重要：把 src=" " 里的地址换成你真实图片的网络地址 -->
     <div>
-        <img src="/arg/assets/location1.png" width="300" alt="窗台">
-</div>
-    <div>
-        <img src="/arg/assets/location2.png" width="300" alt="桌子">
+        <img src="/arg/assets/location1.png" alt="窗台">
     </div>
     <div>
-        <img src="/arg/assets/location3.png" width="300" alt="椅子">
+        <img src="/arg/assets/location2.png" alt="桌子">
     </div>
     <div>
-        <img src="/arg/assets/location4.png" width="300" alt="走廊">
+        <img src="/arg/assets/location3.png" alt="椅子">
+    </div>
+    <div>
+        <img src="/arg/assets/location4.png" alt="走廊">
     </div>
 </body>
 </html>
