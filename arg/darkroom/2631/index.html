@@ -1,69 +1,167 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>진실과 거짓</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>진실과 거짓 · 순간의 기록</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             text-align: center;
-            font-family: monospace;
+            font-family: 'Courier New', Courier, monospace;
             margin: 2rem;
             background-color: rgb(255, 255, 255);
-            color: #333; /* 改为深色，便于在白色背景阅读 */
+            color: #1e2a2e;
+            line-height: 1.5;
         }
-        img {
-            max-width: 80%;
-            border: 2px solid #555;
-            margin: 1rem;
-            cursor: pointer;
-            transition: 0.2s;
-            background-color: #000000;
+
+        h1 {
+            color: #1e3c3f;
+            font-size: 2.2rem;
+            letter-spacing: -0.5px;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.02);
         }
-        img:hover {
-            opacity: 0.9;
-            border-color: #888;
+
+        p {
+            color: #4a5b5e;
+            font-size: 1rem;
+            margin-top: 0.25rem;
+            margin-bottom: 1.5rem;
+            font-family: monospace;
         }
+
+        /* 이미지 컨테이너 & 다운로드 영역 */
         .download {
-            margin: 1rem;
+            margin: 1.5rem auto;
+            display: inline-block;
+            background: transparent;
+            border-radius: 12px;
+            transition: transform 0.2s ease;
         }
+
+        .download:hover {
+            transform: scale(0.99);
+        }
+
+        img {
+            max-width: 85%;
+            width: auto;
+            height: auto;
+            border: 2px solid #2c4f55;
+            border-radius: 8px;
+            margin: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            background-color: #0a1a1c;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        img:hover {
+            opacity: 0.92;
+            border-color: #7f8c8d;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        /* 일반 링크 전역 스타일 (대부분의 a 태그 영향 최소화) */
+        a {
+            color: #9aaeb3;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        /* 오른쪽 하단 시크릿 코너 : 투명하고 은은하게 */
         .secret-corner {
             position: fixed;
-            bottom: 10px;
-            right: 10px;
+            bottom: 14px;
+            right: 14px;
             font-size: 12px;
-            /* 移除透明度，让链接更明显 */
+            font-family: 'Courier New', monospace;
+            background: transparent;
+            /* 핵심: 평소에는 눈에 덜 띄도록 반투명 처리 */
+            opacity: 0.42;
+            transition: opacity 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            z-index: 999;
+            backdrop-filter: blur(0px);
+            /* 텍스트 그림자 없이 깔끔하게 */
+        }
+
+        /* 마우스를 올리면 완전히 선명해져서 접근성 확보 */
+        .secret-corner:hover {
             opacity: 1;
         }
+
+        /* 내부 링크 스타일: 기본 색상은 진회색, 투명도 상속받아 흐릿하게 표현됨 */
         .secret-corner a {
-            color: #555; /* 深灰色，清晰可见 */
+            color: #3a5a5f;
             text-decoration: none;
+            font-weight: 450;
+            letter-spacing: 0.3px;
+            background: transparent;
+            padding: 4px 6px;
+            border-radius: 30px;
+            transition: background 0.2s, color 0.2s;
+            display: inline-block;
         }
+
+        /* 호버시 링크가 좀더 진하게 + 배경 미세하게 강조 (부모 opacity=1 일 때 발동) */
         .secret-corner a:hover {
-            color: #000; /* 悬停变黑 */
-            text-decoration: underline;
-        }
-        a {
-            color: #ccc;
+            color: #0c2c2f;
+            background-color: rgba(200, 210, 205, 0.2);
             text-decoration: none;
         }
-        p {
-            color: #555;
+
+        /* 추가: 본문 내 다른 a 태그가 있다면 방해하지 않음 (현재는 없음) */
+        body > a:not(.secret-corner a) {
+            color: #8aa2a8;
         }
-        h1 {
-            color: #222;
+
+        /* 반응형 작은 화면에서도 여백 잘 유지 */
+        @media (max-width: 580px) {
+            body {
+                margin: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            img {
+                max-width: 95%;
+            }
+            .secret-corner {
+                bottom: 8px;
+                right: 8px;
+                font-size: 10px;
+                opacity: 0.45;
+            }
+        }
+
+        /* 프린트, 기타 접근성 */
+        @media print {
+            .secret-corner {
+                opacity: 0.2;
+            }
         }
     </style>
 </head>
 <body>
     <h1>🎭 진실과 거짓</h1>
     <p>이 사진은 평범해 보이지만 중요한 정보를 숨기고 있습니다.</p>
+    
     <div class="download">
-        <a href="/arg/assets/phantom.tif" download="phantom.tif">
-            <img src="/arg/assets/phantom.jpg" alt="거짓">
+        <a href="/arg/assets/phantom.tif" download="phantom.tif" aria-label="다운로드: phantom.tif">
+            <img src="/arg/assets/phantom.jpg" alt="거짓과 진실의 경계, phantom image">
         </a>
     </div>
+    
+    <!-- 오른쪽 하단 모서리 : 은은하게 투명하고, 필요시 호버로 또렷하게 -->
     <div class="secret-corner">
-        <a href="/arg">🔒 홈페이지로 돌아가기</a>
+        <a href="/arg" aria-label="홈페이지로 돌아가기">🔒 홈페이지로 돌아가기</a>
     </div>
 </body>
 </html>
